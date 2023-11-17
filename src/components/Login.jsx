@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
-
-const Login = () => {
+function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const navigate = useNavigate()
 
@@ -19,63 +19,58 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const credentials = {
-      username,
-      password,
-    };
-
     try {
-      const response = await fetch('http://localhost:4000/login', {
+      const response = await fetch("http://localhost:4000/login", {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        'credentials': 'include',
-        body: JSON.stringify(credentials),
-      });
+        body: JSON.stringify({ username, password }),
 
-      if (response.ok) {
-        console.log('User authenticated:', credentials);
-        navigate("/playlists")
+      });
+      const result = await response.json()
+      if (result.message === 'success') {
+        console.log(result);
+        navigate('/home')
       } else {
-        console.error('Authentication failed');
+        const data = await response.json();
+        setError(data.message || "log in didn't work try again");
       }
     } catch (error) {
-      console.error('Error:', error);
+      setError('error m8y');
     }
-
-    setUsername('');
-    setPassword('');
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2> Login </h2>
-      <form onSubmit={handleSubmit} style={{ maxWidth: "300px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="username"> Username: </label>
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
+            name="username"
             value={username}
             onChange={handleUsernameChange}
-            style={{ width: "90%", padding: "2px" }}
+            required
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
-          <label htmlFor="password"> Password: </label>
+        <div>
+          <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
+            name="password"
             value={password}
             onChange={handlePasswordChange}
-            style={{ width: "90%", padding: "2px" }}
+            required
           />
         </div>
-        <button type="submit" className='buttonsignup'> Login </button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
-};
+}
 
 export default Login;
