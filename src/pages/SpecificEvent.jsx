@@ -8,10 +8,6 @@ const HomePage = () => {
     return (
         <div style={{ display: 'flex' }}>
             <NavBar />
-          <div style={{ flex: '1 0 50%', padding: '20px' }}>
-            <h2>My Events</h2>
-
-          </div>
 
           <div style={{ flex: '1 0 50%', padding: '20px' }}>
             <h2>Full Calendar</h2>

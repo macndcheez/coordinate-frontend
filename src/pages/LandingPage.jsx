@@ -9,9 +9,9 @@ const LandingPage = () => {
         <div className='card'>
             {showLogin ? <Login /> : <Signup />}
             <p>
-                {showLogin ? "Haven't signed up?" : "Already have an account?"}
+                {showLogin ? "Haven't signed up?" : " Already have an account?"}
                 <span className='link' onClick={() => setShowLogin(!showLogin)}>
-                    {showLogin ? "Sign up here!" : "Log in here!"}
+                    {showLogin ? "Sign up here!" : " Log in here!"}
                 </span>
             </p>
         </div>

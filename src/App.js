@@ -4,6 +4,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 import LandingPage from './pages/LandingPage';
 import HomePage from './pages/HomePage';
+import NewEvent from './pages/NewEvent';
+
 
 function App() {
   return (
@@ -11,6 +13,7 @@ function App() {
     <div className="App">
       <LandingPage />
       <HomePage />
+      <NewEvent />
     </div>
     </Router>
   );

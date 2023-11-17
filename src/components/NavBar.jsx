@@ -12,7 +12,7 @@ const NavBar = () => {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
         <li className="nav-item">
-          <a className="nav-link" href="/newevent">Create New Event</a>
+          <a className="nav-link" href="/event/new">Create New Event</a>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="#">Profile</a>
