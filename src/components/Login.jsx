@@ -29,7 +29,7 @@ function Login() {
 
       });
       const result = await response.json()
-      if (result.message === 'success') {
+      if (result.userid) {
         console.log(result);
         navigate('/home')
       } else {
