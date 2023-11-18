@@ -21,7 +21,7 @@ const router = createBrowserRouter(
             <Route path='/event/new' element={<NewEvent />} action={newEvent}/>
             <Route path='/event/:uniqueUrl' element={<SpecificEvent />}/>
             <Route path='/event/delete/:id' />
-            <Route path='/event/edit/:id' element={<EditEventPage />}/>
+            <Route path='/event/edit/:uniqueUrl' element={<EditEventPage />}/>
         </Route>
 
 

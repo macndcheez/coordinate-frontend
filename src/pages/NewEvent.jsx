@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './NewEvent.css'; // Import your CSS file
+import './NewEvent.css'; 
 
 const NewEvent = () => {
 const [eventName, setEventName] = useState('');

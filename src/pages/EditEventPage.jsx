@@ -33,7 +33,6 @@ const EditEventPage = () => {
   
         if (response.ok) {
           console.log('Event updated successfully');
-          // Navigate to the event details page after editing
           navigate(`/event/${uniqueUrl}`);
         } else {
           console.error('Event update failed');
@@ -54,7 +53,7 @@ const EditEventPage = () => {
               type="text"
               id="eventName"
               name="eventName"
-              value={eventName} // Pre-populate the value with existing data
+              value={eventName} 
               required
               className="rounded-input"
             /><br />
@@ -64,7 +63,7 @@ const EditEventPage = () => {
               onChange={(e) => setCalendarDuration(e.target.value)}
               name="calendarDuration"
               id="calendarDuration"
-              value={calendarDuration} // Pre-populate the value with existing data
+              value={calendarDuration}
               required
               className="rounded-input"
             >
