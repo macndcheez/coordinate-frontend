@@ -5,137 +5,131 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import NavBar from '../components/NavBar';
+import './SpecificEvent.css'; // Import your CSS file for styling
 
 const SpecificEvent = () => {
-  const [weekendsVisible, setWeekendsVisible] = useState(true);
-  const [currentEvents, setCurrentEvents] = useState([]);
-  const getUserId = () => {
-    const userId = sessionStorage.getItem('userid');
+const [weekendsVisible, setWeekendsVisible] = useState(true);
+const [currentEvents, setCurrentEvents] = useState([]);
+const getUserId = () => {
+const userId = sessionStorage.getItem('userid');
     return userId;
-  };
-  const userId = getUserId();
+};
+const userId = getUserId();
 
-  useEffect(() => {
+useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     setCurrentEvents(storedEvents);
-  }, [userId]);
+}, [userId]);
 
-  const handleWeekendsToggle = () => {
+const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
-  };
+};
 
-  const handleDateSelect = (selectInfo) => {
-    const title = prompt('Please enter a new title for your event');
-    const calendarApi = selectInfo.view.calendar;
+const handleDateSelect = (selectInfo) => {
+const title = prompt('Please enter a new title for your event');
+const calendarApi = selectInfo.view.calendar;
 
-    calendarApi.unselect(); // clear date selection
+calendarApi.unselect(); // clear date selection
 
-    if (title) {
-      const newEvent = {
+if (title) {
+    const newEvent = {
         id: createEventId(),
         title,
         start: selectInfo.startStr,
         end: selectInfo.endStr,
         allDay: selectInfo.allDay,
-      };
+    };
 
-      calendarApi.addEvent(newEvent);
-      saveEvent(newEvent);
-      setCurrentEvents([...currentEvents, newEvent]);
-    }
-  };
+    calendarApi.addEvent(newEvent);
+    saveEvent(newEvent);
+    setCurrentEvents([...currentEvents, newEvent]);
+}};
 
-  const handleEventClick = (clickInfo) => {
+const handleEventClick = (clickInfo) => {
     const isConfirmed = window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`);
-
     if (isConfirmed) {
-      deleteEvent(clickInfo.event.id);
-      setCurrentEvents(currentEvents.filter((event) => event.id !== clickInfo.event.id));
-    }
-  };
+        deleteEvent(clickInfo.event.id);
+        setCurrentEvents(currentEvents.filter((event) => event.id !== clickInfo.event.id));
+}};
 
-  const handleEvents = (events) => {
-    setCurrentEvents(events);
-  };
+const handleEvents = (events) => {
+setCurrentEvents(events);
+};
 
-  const renderEventContent = (eventInfo) => (
+const renderEventContent = (eventInfo) => (
     <>
-      <b>{eventInfo.timeText}</b>
-      <i>{eventInfo.event.title}</i>
+        <b>{eventInfo.timeText}</b>
+        <i>{eventInfo.event.title}</i>
     </>
-  );
+);
 
-  const renderSidebarEvent = (event) => (
+const renderSidebarEvent = (event) => (
     <li key={event.id}>
-      <b>{formatDate(event.start, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
-      <i>{event.title}</i>
+        <b>{formatDate(event.start, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
+        <i>{event.title}</i>
     </li>
-  );
+);
 
-  const createEventId = () => String(new Date().getTime());
+const createEventId = () => String(new Date().getTime());
 
-  const saveEvent = (event) => {
+const saveEvent = (event) => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     const updatedEvents = [...storedEvents, event];
     localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
-  };
+};
 
-  const deleteEvent = (eventId) => {
+const deleteEvent = (eventId) => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     const updatedEvents = storedEvents.filter((event) => event.id !== eventId);
     localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
-  };
+};
 
-  const clearEvents = () => {
-    // Clear both state and local storage
+const clearEvents = () => {
     setCurrentEvents([]);
     localStorage.removeItem('calendarEvents');
-  };
+};
 
-  return (
-    <div className=''>
-      {renderSidebar()}
-      <div className=''>
+return (
+    <div className='specific-event-container'>
+        {renderSidebar()}
+        <div className='calendar-container'>
         <FullCalendar
-          plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          headerToolbar={{
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+        headerToolbar={{
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay',
-          }}
-          initialView='dayGridMonth'
-          editable={true}
-          selectable={true}
-          selectMirror={true}
-          dayMaxEvents={true}
-          weekends={weekendsVisible}
-          initialEvents={currentEvents}
-          select={handleDateSelect}
-          eventContent={renderEventContent}
-          eventClick={handleEventClick}
-          eventsSet={handleEvents}
+        }}
+            initialView='dayGridMonth'
+            editable={true}
+            selectable={true}
+            selectMirror={true}
+            dayMaxEvents={true}
+            weekends={weekendsVisible}
+            initialEvents={currentEvents}
+            select={handleDateSelect}
+            eventContent={renderEventContent}
+            eventClick={handleEventClick}
+            eventsSet={handleEvents}
         />
       </div>
     </div>
   );
 
-  function renderSidebar() {
+function renderSidebar() {
     return (
-      <div className=''>
+        <div className='sidebar'>
         <NavBar />
-        <div className=''></div>
-        <div className=''>
-          <label>
-            <input
-              type='checkbox'
-              checked={weekendsVisible}
-              onChange={handleWeekendsToggle}
-            ></input>
-            toggle weekends
-          </label>
+        <div className='toggle-weekends'>
+            <label>
+                <input id='check-box' type='checkbox' checked={weekendsVisible} onChange={handleWeekendsToggle}></input>
+                Toggle Weekends
+            </label>
+        </div>
+        <div className='clear-events'>
           <button onClick={clearEvents}>Clear Events</button>
         </div>
-        <div className=''>
+        <div className='all-events'>
           <h2>All Events ({currentEvents.length})</h2>
           <ul>{currentEvents.map(renderSidebarEvent)}</ul>
         </div>

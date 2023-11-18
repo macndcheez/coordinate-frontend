@@ -1,3 +1,13 @@
-NavBar.brand {
-    font-family: 'Vollkorn', serif;
+.nav-bar {
+    
+    font-size: 30px;
+}
+
+#title {
+    font-size: 40px;
+    font-family: 'Playfair Display', serif;
+}
+
+.name {
+    font-family: 'Playfair Display', serif;
 }

@@ -8,33 +8,35 @@
     overflow: hidden;
     background-size: cover;
     background-position: center;
-  }
+}
 
-  body {
+body {
     margin: 0;
     padding: 0;
-  }
+}
   
-  .card {
+.card {
     background-color: #C3C4C6ff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 50px;
     text-align: center;
     font-family: 'Vollkorn', serif;
-  }
+}
   
-  h2 {
+h2 {
     color: #333333;
     font-family: 'Vollkorn', serif;
-  }
+    font-size: 40px;
+}
   
-  .link {
+.link {
     color: #007bff;
     cursor: pointer;
     text-decoration: underline;
-  }
+}
   
-  .link:hover {
+.link:hover {
     color: #0056b3;
-  }
+}
+

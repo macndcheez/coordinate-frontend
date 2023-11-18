@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './Signup.css'
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -54,13 +55,13 @@ const Signup = () => {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
+    <div  style={{ textAlign: "center", padding: "20px" }}>
       <h2> Sign Up </h2>
       <form
         onSubmit={handleSubmit}
         style={{ maxWidth: "300px", margin: "0 auto" }}
       >
-        <div style={{ marginBottom: "10px" }}>
+        <div className='form-titles' style={{ marginBottom: "10px" }}>
           <label htmlFor="name"> Name: </label>
           <input
             type="text"
@@ -70,7 +71,7 @@ const Signup = () => {
             style={{ width: "90%", padding: "2px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className='form-titles' style={{ marginBottom: "10px" }}>
           <label htmlFor="username"> Username: </label>
           <input
             type="text"
@@ -80,7 +81,7 @@ const Signup = () => {
             style={{ width: "90%", padding: "2px" }}
           />
         </div>
-        <div style={{ marginBottom: "10px" }}>
+        <div className='form-titles' style={{ marginBottom: "10px" }}>
           <label htmlFor="password"> Password: </label>
           <input
             type="password"
@@ -90,8 +91,8 @@ const Signup = () => {
             style={{ width: "90%", padding: "2px" }}
           />
         </div>
-        <button
-          type="submit" className="buttonsignup" >
+        <button 
+          type="submit" className="buttonsignup form-titles" >
           {" "}
           Sign Up{" "}
         </button>

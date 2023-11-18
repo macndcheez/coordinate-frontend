@@ -1,0 +1,23 @@
+.calendar-container {
+    flex: 3;
+    padding: 20px;
+    font-size: 25px;
+    font-family: 'Vollkorn', serif;
+}
+
+.event-title {
+    font-size: 50px;
+
+}
+
+ul {
+    list-style: none;
+    font-family: 'Vollkorn', serif;
+    color: black;
+}
+
+.event-name {
+    text-decoration: none;
+    font-size: 23px;
+    color: black;
+  }

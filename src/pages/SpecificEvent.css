@@ -1,0 +1,29 @@
+.specific-event-container {
+    display: flex;
+    height: 100vh;
+}
+
+#check-box {
+    
+}
+  
+.sidebar {
+    flex: 1;
+    padding: 20px;
+    background-color: #e3dac9;
+    font-family: 'Vollkorn', serif;
+    font-size: 25px;
+}
+  
+.calendar-container {
+    flex: 3;
+    padding: 20px;
+    font-size: 25px;
+    font-family: 'Vollkorn', serif;
+}
+  
+.toggle-weekends,
+.clear-events,
+.all-events {
+    margin-top: 20px;
+}

@@ -8,6 +8,7 @@ import NewEvent from "./pages/NewEvent"
 import LandingPage from "./pages/LandingPage"
 import { newEvent } from "./action"
 import SpecificEvent from "./pages/SpecificEvent"
+import EditEventPage from "./pages/EditEventPage"
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -20,7 +21,7 @@ const router = createBrowserRouter(
             <Route path='/event/new' element={<NewEvent />} action={newEvent}/>
             <Route path='/event/:uniqueUrl' element={<SpecificEvent />}/>
             <Route path='/event/delete/:id' />
-            <Route path='/event/edit/:id' />
+            <Route path='/event/edit/:id' element={<EditEventPage />}/>
         </Route>
 
 

@@ -6,19 +6,19 @@ import './NavBar.css'
 
 const NavBar = () => {
   return (
-    
-    <Navbar bg="body-tertiary" expand="lg">
+
+    <Navbar className="nav-bar" bg="body-tertiary" expand="lg">
       <div className="container-fluid">
-        <Navbar.Brand as={Link} to="/home">
+        <Navbar.Brand id='title' as={Link} to="/home">
           Coordinate
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarNav" />
         <Navbar.Collapse id="navbarNav">
           <Nav className="ml-auto">
-            <Nav.Link as={Link} to="/event/new">
+            <Nav.Link className='name' as={Link} to="/event/new">
               Create New Event
             </Nav.Link>
-            <Nav.Link as={Link} to="#">
+            <Nav.Link className='name' as={Link} to="#">
               Profile
             </Nav.Link>
           </Nav>
