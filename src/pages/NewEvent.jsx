@@ -24,7 +24,7 @@ const NewEvent = () => {
             const result = await response.json();
             console.log(result)
             // Redirect to the event details page
-            navigate(`/event/${result.uniqueUrl}`);
+            navigate(`/event/${result.uniqueUrl}?calendarDuration=${calendarDuration}`);
           } else {
             console.error('Event creation failed');
           }
