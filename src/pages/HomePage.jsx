@@ -14,9 +14,10 @@ const HomePage = () => {
             .catch((error) => console.error('there was an error fetching le data', error))
     }, []);
     return (
+        <div>
+        <NavBar />
         <div style={{ display: 'flex' }}>
-            <NavBar />
-          <div style={{ flex: '1 0 50%', padding: '20px' }}>
+          <div style={{flex: '1 0 50%', padding: '20px' }}>
             <h2>My Events</h2>
             <ul>
                 {userEvents.map((event) => (
@@ -28,8 +29,7 @@ const HomePage = () => {
 
           </div>
 
-          <div style={{ flex: '1 0 50%', padding: '20px' }}>
-            <h2>Full Calendar</h2>
+          <div style={{ flex: ' 0 50%', padding: '20px' }}>
             <FullCalendar
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
@@ -38,6 +38,7 @@ const HomePage = () => {
               ]}
             />
           </div>
+        </div>
         </div>
       );
     };

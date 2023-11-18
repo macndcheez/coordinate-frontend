@@ -9,11 +9,17 @@ import NavBar from '../components/NavBar';
 const SpecificEvent = () => {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [currentEvents, setCurrentEvents] = useState([]);
+  const getUserId = () => {
+    const userId = sessionStorage.getItem('userid');
+    return userId
+  }
+  const userId = getUserId()
 
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     setCurrentEvents(storedEvents)
-  }, []);
+  }, [userId]);
+
 
   const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
