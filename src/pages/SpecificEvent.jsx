@@ -11,15 +11,14 @@ const SpecificEvent = () => {
   const [currentEvents, setCurrentEvents] = useState([]);
   const getUserId = () => {
     const userId = sessionStorage.getItem('userid');
-    return userId
-  }
-  const userId = getUserId()
+    return userId;
+  };
+  const userId = getUserId();
 
   useEffect(() => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
-    setCurrentEvents(storedEvents)
+    setCurrentEvents(storedEvents);
   }, [userId]);
-
 
   const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
@@ -50,7 +49,7 @@ const SpecificEvent = () => {
     const isConfirmed = window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`);
 
     if (isConfirmed) {
-      deleteEvent(clickInfo.event.id)
+      deleteEvent(clickInfo.event.id);
       setCurrentEvents(currentEvents.filter((event) => event.id !== clickInfo.event.id));
     }
   };
@@ -78,13 +77,19 @@ const SpecificEvent = () => {
   const saveEvent = (event) => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     const updatedEvents = [...storedEvents, event];
-    localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents))
-  }
+    localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
+  };
 
   const deleteEvent = (eventId) => {
     const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
     const updatedEvents = storedEvents.filter((event) => event.id !== eventId);
     localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
+  };
+
+  const clearEvents = () => {
+    // Clear both state and local storage
+    setCurrentEvents([]);
+    localStorage.removeItem('calendarEvents');
   };
 
   return (
@@ -128,6 +133,7 @@ const SpecificEvent = () => {
             ></input>
             toggle weekends
           </label>
+          <button onClick={clearEvents}>Clear Events</button>
         </div>
         <div className=''>
           <h2>All Events ({currentEvents.length})</h2>

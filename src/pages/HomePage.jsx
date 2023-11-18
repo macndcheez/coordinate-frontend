@@ -34,7 +34,7 @@ const HomePage = () => {
               plugins={[dayGridPlugin]}
               initialView="dayGridMonth"
               events={[
-
+                
               ]}
             />
           </div>
