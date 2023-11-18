@@ -2,9 +2,11 @@ import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
+import './NavBar.css'
 
 const NavBar = () => {
   return (
+    
     <Navbar bg="body-tertiary" expand="lg">
       <div className="container-fluid">
         <Navbar.Brand as={Link} to="/home">
