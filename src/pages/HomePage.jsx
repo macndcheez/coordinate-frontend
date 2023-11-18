@@ -8,7 +8,7 @@ const HomePage = () => {
     const [userEvents, setUserEvents] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:4000/events')
+        fetch('https://coordinate-backend.onrender.com')
             .then((response) => response.json())
             .then((data) => setUserEvents(data))
             .catch((error) => console.error('there was an error fetching le data', error))
