@@ -9,7 +9,7 @@ const EditEventPage = () => {
     const navigate = useNavigate();
   
     useEffect(() => {
-      fetch(`http://localhost:4000/event/${uniqueUrl}`)
+      fetch(`https://coordinate-backend.onrender.com/event/${uniqueUrl}`)
         .then((response) => response.json())
         .then((data) => {
           setEventName(data.eventName);
@@ -22,7 +22,7 @@ const EditEventPage = () => {
       e.preventDefault();
       console.log(eventName, calendarDuration);
       try {
-        const response = await fetch(`http://localhost:4000/event/edit/${uniqueUrl}`, {
+        const response = await fetch(`https://coordinate-backend.onrender.com/event/${uniqueUrl}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',

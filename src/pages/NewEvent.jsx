@@ -12,7 +12,7 @@ const handleSubmit = async (e) => {
   e.preventDefault();
   console.log(eventName, calendarDuration);
   try {
-    const response = await fetch('http://localhost:4000/event/new', {
+    const response = await fetch('https://coordinate-backend.onrender.com/event/new', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

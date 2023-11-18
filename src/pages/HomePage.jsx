@@ -10,7 +10,7 @@ const HomePage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:4000/event')
+    fetch('https://coordinate-backend.onrender.com/event')
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -27,7 +27,7 @@ const HomePage = () => {
     const isConfirmed = window.confirm(`Are you sure you want to delete this event?`);
 
     if (isConfirmed) {
-      fetch(`http://localhost:4000/event/${uniqueUrl}`, {
+      fetch(`https://coordinate-backend.onrender.com/event/${uniqueUrl}`, {
         method: 'DELETE',
         credentials: 'include',
       })
