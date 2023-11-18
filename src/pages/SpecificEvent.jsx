@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formatDate } from '@fullcalendar/core';
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -9,6 +9,11 @@ import NavBar from '../components/NavBar';
 const SpecificEvent = () => {
   const [weekendsVisible, setWeekendsVisible] = useState(true);
   const [currentEvents, setCurrentEvents] = useState([]);
+
+  useEffect(() => {
+    const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    setCurrentEvents(storedEvents)
+  }, []);
 
   const handleWeekendsToggle = () => {
     setWeekendsVisible(!weekendsVisible);
@@ -30,6 +35,7 @@ const SpecificEvent = () => {
       };
 
       calendarApi.addEvent(newEvent);
+      saveEvent(newEvent);
       setCurrentEvents([...currentEvents, newEvent]);
     }
   };
@@ -38,7 +44,7 @@ const SpecificEvent = () => {
     const isConfirmed = window.confirm(`Are you sure you want to delete the event '${clickInfo.event.title}'`);
 
     if (isConfirmed) {
-      clickInfo.event.remove();
+      deleteEvent(clickInfo.event.id)
       setCurrentEvents(currentEvents.filter((event) => event.id !== clickInfo.event.id));
     }
   };
@@ -62,6 +68,18 @@ const SpecificEvent = () => {
   );
 
   const createEventId = () => String(new Date().getTime());
+
+  const saveEvent = (event) => {
+    const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    const updatedEvents = [...storedEvents, event];
+    localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents))
+  }
+
+  const deleteEvent = (eventId) => {
+    const storedEvents = JSON.parse(localStorage.getItem('calendarEvents')) || [];
+    const updatedEvents = storedEvents.filter((event) => event.id !== eventId);
+    localStorage.setItem('calendarEvents', JSON.stringify(updatedEvents));
+  };
 
   return (
     <div className=''>
