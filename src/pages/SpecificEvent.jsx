@@ -4,10 +4,12 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import NavBar from '../components/NavBar';
 
 
-const HomePage = () => {
+const SpecificEvent = () => {
     return (
         <div style={{ display: 'flex' }}>
             <NavBar />
+
+            
 
           <div style={{ flex: '1 0 50%', padding: '20px' }}>
             <h2>Full Calendar</h2>
@@ -23,4 +25,4 @@ const HomePage = () => {
       );
     };
 
-export default HomePage
+export default SpecificEvent

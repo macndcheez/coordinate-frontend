@@ -26,6 +26,7 @@ function Login() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
+        credentials: "include"
 
       });
       const result = await response.json()

@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 const NewEvent = () => {
     const [eventName, setEventName] = useState('');
-    const [calendarDuration, setCalendarDuration] = useState('')
+    const [calendarDuration, setCalendarDuration] = useState('3')
 
     const navigate = useNavigate()
     const handleSubmit = async (e) => {
         e.preventDefault();
-      
+        console.log(eventName, calendarDuration)
         try {
           const response = await fetch('http://localhost:4000/event/new', {
             method: 'POST',
@@ -17,12 +17,14 @@ const NewEvent = () => {
               'Content-Type': 'application/json',
             },
             body: JSON.stringify({ eventName, calendarDuration }),
+            credentials: 'include'
           });
       
           if (response.ok) {
             const result = await response.json();
+            console.log(result)
             // Redirect to the event details page
-            navigate(`/event/${result.id}`);
+            navigate(`/event/${result.uniqueUrl}`);
           } else {
             console.error('Event creation failed');
           }
@@ -34,18 +36,18 @@ const NewEvent = () => {
   return (
     <div>
       <h1>Create a New Event!</h1>
-      <form action="/event/new" method="POST">
+      <form onSubmit={handleSubmit}>
         <label htmlFor="eventName">Event Name:</label>
-        <input type="text" id="eventName" name="eventName" required /><br />
+        <input onChange={e => setEventName(e.target.value)} type="text" id="eventName" name="eventName" required /><br />
 
         <label htmlFor="calendarDuration">Month Duration:</label>
-        <select name="calendarDuration" id="calendarDuration" required>
+        <select onChange={e => setCalendarDuration(e.target.value)} name="calendarDuration" id="calendarDuration" required>
           <option value="3">3</option>
           <option value="6">6</option>
           <option value="12">12</option>
         </select><br />
 
-        <button type="submit">Create Event</button>
+        <button onSubmit={handleSubmit} type="submit">Create Event</button>
       </form>
     </div>
   );
